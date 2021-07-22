@@ -5,6 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :events
+  has_many :sent_invites, class_name: 'Invitation', foreign_key: :inviter_id
+  has_many :received_invites, class_name: 'Invitation', foreign_key: :invited_id
+  has_many :invited_events, through: :received_invites, class_name: 'Event', source: :event,
+            foreign_key: :invited_id
 
   validates :username, presence: true, uniqueness: true
   validates :name, presence: true
