@@ -18,6 +18,7 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
+    redirect_to root_path unless current_user == @event.creator
   end
 
   # POST /events or /events.json
@@ -50,6 +51,8 @@ class EventsController < ApplicationController
 
   # DELETE /events/1 or /events/1.json
   def destroy
+    redirect_to root_path && return unless current_user == @event.creator
+
     @event.destroy
     respond_to do |format|
       format.html { redirect_to events_url, notice: "Event was successfully destroyed." }
@@ -65,6 +68,6 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:name, :location, :date)
+      params.require(:event).permit(:name, :description, :location, :date)
     end
 end

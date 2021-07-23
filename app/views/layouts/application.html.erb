@@ -20,7 +20,9 @@
 
     <div class="user-actions">
       <% if user_signed_in? %>
-        <p class="user-name"><%= current_user.name %></p>
+        <%= link_to user_path(current_user) do %>
+          <p class="user-name"><%= current_user.name %></p>
+        <% end %>
         <%= link_to 'Logout', destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure' }%>
       <% else %>
         <%= link_to 'Sign in', new_user_session_path %>

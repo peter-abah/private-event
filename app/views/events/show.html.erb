@@ -1,8 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-</p>
+<h2><%= @event.name %></h2>
   
 <div>
   <strong>Description</strong>
@@ -25,6 +23,17 @@
   <strong>Creator:</strong>
   <%= @event.creator.name %>
 </p>
+
+<ul class="event_attendees">
+  <h3>Attendees</h3>
+  <% @event.attendees.each do | attendee | %>
+    <%= link_to user_path(attendee) do %>
+      <li><%= attendee.name %></li>
+    <% end %>
+  <% end %>
+</ul>
+
+<%= link_to 'Invite Attendees', new_event_invitation_path(@event) %>
 
 <%= link_to 'Back', events_path %>
 <% if user_signed_in? %>

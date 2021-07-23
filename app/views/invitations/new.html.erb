@@ -1,0 +1,15 @@
+<ul>
+  <h2>People to invite</h2>
+  <% @uninvited.each do |attendee| %>
+    <li>
+      <%= form_with model: [@event, @event.invitations.build] do |form| %>
+
+        <%= form.hidden_field :invited_id, value: attendee.id %>
+        <%= form.hidden_field :accepted, value: false %>
+
+        <p>Name: <%= attendee.name %></p> |
+        <%= form.submit 'Invite' %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
