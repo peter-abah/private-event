@@ -1,0 +1,11 @@
+<div class="invite-container">
+  <p class="event-name"><strong><%= invite.event.name %></strong></p>
+  <p class="event-owner"><strong>Creator:</strong> <%= invite.event.creator.name %></p>
+  
+  <%= form_with model: invite do |form| %>
+    <%= form.hidden_field :accepted, value: true %>
+    <%= form.submit 'accept' %>
+  <% end %>
+  
+  <%= link_to 'reject', invite, method: :delete, data: { confirm: 'Are you sure' } %>
+</div>

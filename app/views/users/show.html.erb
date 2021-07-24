@@ -1,7 +1,22 @@
 <div class="user-container">
   <h2 class="user-name"><%= @user.name %></h2>
   <div class="event-created">
+    <h3>Events created</h3>
     <% @user.events.each do |event| %>
+      <%= render partial: 'events/event', locals: { event: event } %>
+    <% end %>
+  </div>
+
+  <div class="event-upcoming">
+    <h3>Upcoming events</h3>
+    <% @user.invited_events.upcoming.each do |event| %>
+      <%= render partial: 'events/invited_event', locals: { event: event } %>
+    <% end %>
+  </div>
+
+  <div>
+    <h3>Past Events</h3>
+    <% @user.invited_events.past.each do |event| %>
       <%= render partial: 'events/event', locals: { event: event } %>
     <% end %>
   </div>

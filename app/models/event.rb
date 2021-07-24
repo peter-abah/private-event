@@ -8,7 +8,6 @@ class Event < ApplicationRecord
   validates :location, presence: true
   validates :date, presence: true
 
-  def attendees
-    invitations.where(accepted: true).includes(:invited).map(&:invited)
-  end
+  scope :upcoming, -> { where('date > ?', Time.now) }
+  scope :past, -> { where('date < ?', Time.now) }
 end
