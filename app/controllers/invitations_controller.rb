@@ -33,7 +33,7 @@ class InvitationsController < ApplicationController
   private
 
   def invitation_params
-    params.require(:invitation).permit(:invited_id, :accepted)
+    params.require(:invitation).permit(:invited_id)
   end
 
   def set_event

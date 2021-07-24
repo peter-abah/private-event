@@ -3,5 +3,9 @@ class Invitation < ApplicationRecord
   belongs_to :invited, class_name: 'User'
   belongs_to :event
 
-  validates :accepted, inclusion: [true, false]
+  enum status: {
+    attending: 1
+    not_attending: 0
+  }
+  
 end
