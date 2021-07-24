@@ -4,8 +4,7 @@ class Invitation < ApplicationRecord
   belongs_to :event
 
   enum status: {
-    attending: 1
+    attending: 1,
     not_attending: 0
   }
-  
 end

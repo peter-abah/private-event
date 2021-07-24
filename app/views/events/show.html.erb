@@ -27,9 +27,7 @@
 <ul class="event_attendees">
   <h3>Attendees</h3>
   <% @event.invited.each do | attendee | %>
-    <%= link_to user_path(attendee) do %>
-      <li><%= attendee.name %></li>
-    <% end %>
+    <li><%= attendee.name %></li>
   <% end %>
 </ul>
 

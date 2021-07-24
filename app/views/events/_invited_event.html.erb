@@ -20,4 +20,14 @@
       <%= event.description %>
     </p>
   </p>
+  <p class="invitation_status">
+    Invitation status: <%= current_user.event_invite(event).status.humanize %>
+  </p>
+
+  <%= form_with model: current_user.event_invite(event) do |form| %>
+    <h3>Change invitation status</h3>
+    <%= form.select :status, {'Attending' => 1, 'Not Attending' => 0 } %>
+    <%= form.submit 'save' %>
+  <% end %>
+  
 </div>
